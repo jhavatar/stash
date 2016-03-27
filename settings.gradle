@@ -1,0 +1,1 @@
+include ':javaexample', ':core', ':serializer-moshi', ':serializer-gson', ':rx'
