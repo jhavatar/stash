@@ -1,4 +1,27 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.6"
+}
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+Properties stashProps = new Properties()
+stashProps.load(project.rootProject.file('stash.properties').newDataInputStream())
+version = stashProps.getProperty("version")
+group = stashProps.getProperty("group")
+archivesBaseName = 'stash'
+def siteUrl = stashProps.getProperty("siteUrl")
+def gitUrl = stashProps.getProperty("gitUrl")
+def description = "Stash is a modular key-value persistence library for android."
 
 android {
     compileSdkVersion 23
@@ -8,7 +31,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName version
     }
     buildTypes {
         release {
@@ -27,4 +50,83 @@ dependencies {
     testCompile 'junit:junit:4.10'
     testCompile 'org.assertj:assertj-core:1.7.0'
     testCompile 'org.robolectric:robolectric:3.0'
+}
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name = archivesBaseName
+            description = description
+            url siteUrl
+
+            packaging 'aar'
+//            groupId archivesBaseName
+            artifactId = archivesBaseName
+            version version
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection gitUrl
+                url siteUrl
+
+            }
+            developers {
+                developer {
+                    name 'jhavatar'
+                }
+            }
+        }
+    }
+}
+
+Properties bintrayProps = new Properties()
+bintrayProps.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = bintrayProps.getProperty("bintray.user")
+    key = bintrayProps.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = 'maven'
+        name = "stash-core"
+        desc = description
+        websiteUrl = siteUrl
+        issueTrackerUrl = stashProps.getProperty("issueTrackerUrl")
+        vcsUrl = gitUrl
+        licenses = ['Apache-2.0']
+        publicDownloadNumbers = true
+        version {
+            name = version
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase =  bintrayProps.getProperty("bintray.gpg.passphrase") //'cthulu_fht4gn' //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
 }
