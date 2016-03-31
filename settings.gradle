@@ -1,1 +1,1 @@
-include ':javaexample', ':core', ':serializer-moshi', ':serializer-gson', ':rx'
+include ':SimpleJavaExample', ':core', ':serializer-moshi', ':serializer-gson', ':rx'

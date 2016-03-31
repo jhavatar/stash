@@ -7,8 +7,6 @@ import android.util.Log;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.ref.WeakReference;
-
 import io.chthonic.stash.serializers.ObjectSerializer;
 
 

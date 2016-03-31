@@ -8,8 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/SimpleJavaExample" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/javaexample" />
             <option value="$PROJECT_DIR$/rx" />
             <option value="$PROJECT_DIR$/serializer-gson" />
             <option value="$PROJECT_DIR$/serializer-moshi" />
@@ -18,8 +18,8 @@
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/SimpleJavaExample" />
             <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/javaexample" />
             <option value="$PROJECT_DIR$/rx" />
             <option value="$PROJECT_DIR$/serializer-gson" />
             <option value="$PROJECT_DIR$/serializer-moshi" />
