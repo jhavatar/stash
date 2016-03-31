@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaexample/javaexample.iml" filepath="$PROJECT_DIR$/javaexample/javaexample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rx/adapter-rxjava.iml" filepath="$PROJECT_DIR$/rx/adapter-rxjava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rx/rx.iml" filepath="$PROJECT_DIR$/rx/rx.iml" />
       <module fileurl="file://$PROJECT_DIR$/serializer-gson/serializer-gson.iml" filepath="$PROJECT_DIR$/serializer-gson/serializer-gson.iml" />
       <module fileurl="file://$PROJECT_DIR$/serializer-moshi/serializer-moshi.iml" filepath="$PROJECT_DIR$/serializer-moshi/serializer-moshi.iml" />
       <module fileurl="file://$PROJECT_DIR$/stash.iml" filepath="$PROJECT_DIR$/stash.iml" />

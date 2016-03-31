@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">crypt</string>
+    <string name="app_name">StashNote</string>
+    <string name="timestamp_label">Saved Date:</string>
 </resources>

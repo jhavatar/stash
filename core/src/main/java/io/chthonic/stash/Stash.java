@@ -43,11 +43,7 @@ public class Stash implements Storage, StashComponents{
         }
     }
 
-    public Stash(Builder builder) {
-        this(builder.getStorage(), builder.getCache());
-    }
-
-    public Stash(Storage storage, StorageCache cache) {
+    public Stash(@NotNull Storage storage, StorageCache cache) {
         this.storage = storage;
         this.cache = cache;
     }
@@ -324,27 +320,20 @@ public class Stash implements Storage, StashComponents{
 
 
     public static class Builder {
-        Storage storage = null;
-        StorageCache cache = null;
+        private Storage storage = null;
+        private StorageCache cache = null;
 
-        public Storage getStorage() {
-            return storage;
-        }
-
-        public void setStorage(Storage storage) {
+        public Builder(Storage storage) {
             this.storage = storage;
         }
 
-        public StorageCache getCache() {
-            return cache;
-        }
-
-        public void setCache(StorageCache cache) {
+        public Builder cache(StorageCache cache) {
             this.cache = cache;
+            return this;
         }
 
         public Stash build() {
-            return new Stash(this);
+            return new Stash(this.storage, this.cache);
         }
     }
 }

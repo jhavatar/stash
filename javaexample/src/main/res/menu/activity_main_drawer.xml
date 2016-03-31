@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item android:title="Actions">
+        <menu>
+            <item
+                android:id="@+id/nav_save"
+                android:title="Save" />
+
+
+            <item
+                android:id="@+id/nav_load"
+                android:title="Load" />
+
+            <item
+                android:id="@+id/nav_delete"
+                android:title="Delete" />
+        </menu>
+    </item>
+
+    <item android:title="Serializers">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_gson"
+                    android:title="Gson" />
+                <item
+                    android:id="@+id/nav_moshi"
+                    android:title="Moshi" />
+            </group>
+        </menu>
+
+    </item>
+
+</menu>

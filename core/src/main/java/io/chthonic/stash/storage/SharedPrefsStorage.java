@@ -7,6 +7,8 @@ import android.util.Log;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.ref.WeakReference;
+
 import io.chthonic.stash.serializers.ObjectSerializer;
 
 
@@ -14,10 +16,6 @@ public class SharedPrefsStorage implements Storage {
 
     static final String TAG = "SharedPrefsStorage";
     private SharedPreferences db;
-
-    public SharedPrefsStorage(Context context, SharedPrefsStorage.Builder builder) {
-        this(context, builder.getName(), builder.getOperatingMode());
-    }
 
     public SharedPrefsStorage(Context context, String name, int operatingMode) {
         db = context.getSharedPreferences(name, operatingMode);
@@ -208,28 +206,22 @@ public class SharedPrefsStorage implements Storage {
     }
 
 
-    static class Builder {
-        int operatingMode = Context.MODE_PRIVATE;
-        String name = "_storage";
+    public static class Builder {
+        private int operatingMode = Context.MODE_PRIVATE;
+        private String name = "_storage";
 
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
+        public Builder name(String name) {
             this.name = name;
+            return this;
         }
 
-        public int getOperatingMode() {
-            return operatingMode;
-        }
-
-        public void setOperatingMode(int operatingMode) {
+        public Builder operatingMode(int operatingMode) {
             this.operatingMode = operatingMode;
+            return this;
         }
 
         public SharedPrefsStorage build(Context context) {
-            return new SharedPrefsStorage(context, this);
+            return new SharedPrefsStorage(context, this.name, this.operatingMode);
         }
     }
 

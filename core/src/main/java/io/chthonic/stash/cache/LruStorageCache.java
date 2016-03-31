@@ -13,8 +13,8 @@ public class LruStorageCache implements StorageCache{
     private int cacheRequest;
     private int cacheHit;
 
-    public LruStorageCache(int lruCacheSize) {
-        cache = new LruCache<String, Object>(lruCacheSize);
+    public LruStorageCache(int maxEntries) {
+        cache = new LruCache<String, Object>(maxEntries);
     }
 
     @Override
